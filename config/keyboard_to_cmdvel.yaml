@@ -1,0 +1,6 @@
+keyboard_to_cmdvel:
+  ros__parameters:
+    linear_speed: 0.5
+    angular_speed: 0.5
+    key_topic: "/keyboard/keypress"
+    cmd_vel_topic: "/cmd_vel"
