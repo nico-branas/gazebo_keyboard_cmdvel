@@ -6,7 +6,7 @@ import os
 def generate_launch_description():
     pkg_share = get_package_share_directory("gazebo_keyboard_cmdvel")
     bridge_yaml = os.path.join(pkg_share, "config", "bridge.yaml")
-    #params_file = os.path.join(pkg_share, "config", "keyboard_to_cmdvel.yaml")   # Si vous avez des paramètres à charger pour le noeud keyboard_to_cmdvel
+    params_file = os.path.join(pkg_share, "config", "keyboard_to_cmdvel.yaml")
 
     bridge = Node(
         package="ros_gz_bridge",

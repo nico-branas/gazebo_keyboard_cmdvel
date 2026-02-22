@@ -111,6 +111,22 @@ def generate_launch_description():
         ],
     )
 
+    # 4) Node de lecture IMU (optionnel, juste pour montrer comment faire plusieurs nodes)
+    imu_reading = Node(
+        package="gazebo_keyboard_cmdvel",
+        executable="imu_reading",
+        name="imu_reading",
+        namespace=LaunchConfiguration("namespace"),
+        output="screen",
+        respawn=LaunchConfiguration("respawn"),
+        parameters=[{"use_sim_time": LaunchConfiguration("use_sim_time")}],
+        arguments=[
+            "--ros-args",
+            "--log-level",
+            LaunchConfiguration("log_level"),
+        ],
+    )
+
     ld = LaunchDescription()
 
     # Register arguments
@@ -127,5 +143,5 @@ def generate_launch_description():
     ld.add_action(gz_sim)
     ld.add_action(bridge)
     ld.add_action(keyboard_to_cmdvel)
-
+    ld.add_action(imu_reading)
     return ld

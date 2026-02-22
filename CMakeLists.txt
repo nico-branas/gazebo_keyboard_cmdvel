@@ -10,6 +10,7 @@ find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
+find_package(sensor_msgs REQUIRED)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
@@ -24,9 +25,12 @@ if(BUILD_TESTING)
 endif()
 
 add_executable(keyboard_to_cmdvel src/keyboard_to_cmdvel.cpp)
-ament_target_dependencies(keyboard_to_cmdvel rclcpp std_msgs geometry_msgs)
+add_executable(imu_reading src/imu_reading.cpp)
 
-install(TARGETS keyboard_to_cmdvel
+ament_target_dependencies(keyboard_to_cmdvel rclcpp std_msgs geometry_msgs sensor_msgs)
+ament_target_dependencies(imu_reading rclcpp std_msgs geometry_msgs sensor_msgs)
+
+install(TARGETS keyboard_to_cmdvel imu_reading
   DESTINATION lib/${PROJECT_NAME}
 )
 install(DIRECTORY launch config
